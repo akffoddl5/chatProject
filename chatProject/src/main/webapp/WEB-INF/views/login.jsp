@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <!--
 Design by TEMPLATED
@@ -23,44 +25,27 @@ Released   : 20130902
 
 </head>
 <body>
-<h1>qwewqeqwe</h1>
-<h1>${id }</h1>
-<div id="page" class="container">
-	<div id="header">
-		<div id="logo">
-			<img src="resources/images/pic02.jpg" alt="" />
-			<h1><a href="#">Privy</a></h1>
-			<span>Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a></span>
-		</div>
-		<div id="menu">
-			<ul>
-				<li class="current_page_item"><a href="#" accesskey="1" title="">Homepage</a></li>
-				<li><a href="#" accesskey="2" title="">Our Clients</a></li>
-				<li><a href="#" accesskey="3" title="">About Us</a></li>
-				<li><a href="#" accesskey="4" title="">Careers</a></li>
-				<li><a href="#" accesskey="5" title="">Contact Us</a></li>
-			</ul>
-		</div>
-	</div>
-	<div id="main">
-		<form action="" >
-			<table border="1">
+
+
+	<center>
+	<h1 style="margin-top: 200px; color: white;"> Chat Site</h1>
+		<form action="login.do" >
+			<table border="1" style="width: 30%; height:200px; margin-top: 200px; color: white; text-align: center; ">
 
 				<tr>
 					<td>아이디 :</td>
-					<td><input type="text" name="id"></td>
+					<td><input type="text" name="id" style="height: 80%; width: 80%; font-size: 18px;"></td>
 				</tr>
 				<tr>
 					<td>비밀번호 :</td>
-					<td><input type="password" name="pwd"></td>
+					<td><input type="password" name="password" style="height: 80%; width: 80%; font-size: 18px;"></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="submit" value="로그인"></td>
+					<td colspan="2" align="center"><input type="submit" value="로그인" style="height: 80%; width: 20%; font-size: 18px;"></td>
 				</tr>
 
 			</table>
 		</form>
-	</div>
-</div>
+	</center>
 </body>
 </html>
