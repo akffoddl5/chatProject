@@ -1,4 +1,4 @@
-package com.project.user;
+package com.project.chat.user;
 
 public class UserVO {
 	
