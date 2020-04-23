@@ -11,12 +11,12 @@ public class UserController {
 	@RequestMapping(value="/login.go")
 	public ModelAndView loginGo(ModelAndView mav){
 		mav.addObject("id","red");
-		mav.setViewName("/index");
+		mav.setViewName("/login");
 		return mav;
 	}
 	@RequestMapping(value="/login.do")
 	public ModelAndView loginDo(ModelAndView mav) {
-		mav.setViewName("/login");
+		mav.setViewName("/login2");
 		return mav;
 	}
 
