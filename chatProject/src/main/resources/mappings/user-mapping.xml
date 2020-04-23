@@ -4,7 +4,7 @@
 
 <mapper namespace="userBatis">
 
-<select id="getUser" resultType="UserVO" parameterType="UserVO">
+<select id="getUser" resultType="userVO" parameterType="userVO">
 	SELECT * FROM CHATUSER WHERE Id = #{id} 
 </select>
 

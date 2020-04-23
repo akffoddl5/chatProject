@@ -27,8 +27,8 @@ Released   : 20130902
 <div id="page" class="container">
 	<div id="header">
 		<div id="logo">
-			<img src="resources/images/pic02.jpg" alt="" />
-			<h1><a href="#">Privy</a></h1>
+			<img src="resources/images/${vo.thumbnailPath }" style="height: 70px; width: 70px;" alt="" />
+			<h1><a href="#">${vo.id }</a></h1>
 			<span>Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a></span>
 		</div>
 		<div id="menu">

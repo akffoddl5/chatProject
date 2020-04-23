@@ -1,5 +1,6 @@
 package com.project.chat.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,25 +20,31 @@ public class UserController {
 	
 	@RequestMapping(value="/login.go")
 	public ModelAndView loginGo(ModelAndView mav){
-		System.out.println("로그인 페이지 이동");
+		System.out.println("login.go");
 
 		mav.setViewName("/login");
 		return mav;
 	}
 	@RequestMapping(value="/login.do")
 
-	public ModelAndView loginDo(UserVO user,ModelAndView mav , HttpSession session) {
+	public ModelAndView loginDo(UserVO user,ModelAndView mav , HttpServletRequest request) {
+		System.out.println("=======user input ======");
+		System.out.println(user.getId());
+		System.out.println(user.getPassword());
 		UserVO userVO = userService.selectUser(user);
+		mav.setViewName("/login");
 		if(userVO.getId() == null) {
-			System.out.println("존재 하지 않는 아이디");
+			System.out.println("no id");
 		}else if(user.getPassword().equals(userVO.getPassword())) {
-			System.out.println("로그인 성공");
+			System.out.println("login success");
+			HttpSession session = request.getSession();
+			session.setAttribute("vo", userVO);
 			mav.setViewName("/index");
 			return mav;
 		}else {
-			System.out.println("비밀번호 오류");
+			System.out.println("password error");
 		}
-		mav.setViewName("/login");
+		
 
 		return mav;
 	}
