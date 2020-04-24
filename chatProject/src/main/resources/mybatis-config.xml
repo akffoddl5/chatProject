@@ -10,5 +10,6 @@
 	
 	<mappers>
 		<mapper resource="mappings/user-mapping.xml" />
+		<mapper resource="mappings/friend-mapping.xml" />
 	</mappers>
 </configuration>

@@ -29,7 +29,7 @@ Released   : 20130902
 
 	<center>
 	<h1 style="margin-top: 200px; color: white;"> Chat Site</h1>
-		<form action="login.do" >
+		<form action="login.do" , method="post">
 			<table border="1" style="width: 30%; height:200px; margin-top: 200px; color: white; text-align: center; ">
 
 				<tr>
