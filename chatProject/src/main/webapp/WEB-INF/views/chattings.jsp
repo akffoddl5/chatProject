@@ -41,8 +41,8 @@ function friendClick(id){
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="index.go" accesskey="1" title="">My Friends</a></li>
-				<li><a href="chattings.go" accesskey="2" title="">Chattings</a></li>
+				<li><a href="index.go" accesskey="1" title="">My Friends</a></li>
+				<li class="current_page_item"><a href="chattings.go" accesskey="2" title="">Chattings</a></li>
 				<li><a href="makeNewFriends.go" accesskey="3" title="">MAKE NEW FRIENDS</a></li>
 				<li><a href="bannedFriends.go" accesskey="4" title="">Banned Friends</a></li>
 				<li><a href="myProfile.go" accesskey="5" title="">My Profile</a></li>

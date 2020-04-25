@@ -1,14 +1,16 @@
 package com.project.chat.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.chat.friend.IFriendService;
 import com.project.chat.user.IUserService;
 import com.project.chat.user.UserVO;
 
@@ -17,6 +19,9 @@ public class UserController {
 	
 	@Autowired
 	private IUserService userService;
+	
+	@Autowired
+	private IFriendService friendService;
 	
 	@RequestMapping(value="/login.go")
 	public ModelAndView loginGo(ModelAndView mav){
@@ -48,7 +53,7 @@ public class UserController {
 
 		return mav;
 	}
-	// ---------------- х╦©Ь╟║ют 
+	// ---------------- х╦О©╫О©╫О©╫О©╫О©╫О©╫ 
 	@RequestMapping(value="/join.go")
 	public ModelAndView joinGo(ModelAndView mav){
 		System.out.println("join.go");
@@ -63,6 +68,60 @@ public class UserController {
 		userService.insertUser(user);
 		mav.setViewName("/login");
 		return mav;
+	}
+	
+	@RequestMapping(value = "/banCancle.do")
+	public ModelAndView banCancle(ModelAndView mav,HttpServletRequest request) {
+		System.out.println("banCancle exe");
+		String myId = request.getParameter("myId");
+		String banId = request.getParameter("banId");
+		System.out.println(myId + " " + banId);
+		userService.banCancle(myId, banId);
+		
+		mav.setViewName("/login");
+		return mav;
+	}
+	
+	@RequestMapping(value ="/addFriend.do")
+	public ModelAndView addFriend(ModelAndView mav, HttpServletRequest request) {
+		System.out.println("addFriend exe");
+		String myId = request.getParameter("myId");
+		String plusId = request.getParameter("plusId");
+		System.out.println(myId + " " + plusId);
+		UserVO tmpVO1 = new  UserVO();
+		UserVO tmpVO2 = new UserVO();
+		tmpVO1.setId(myId);
+		tmpVO2.setId(plusId);
+		UserVO getTmpVO2 = userService.selectUser(tmpVO2);
+		List<UserVO> friendList1 = friendService.getMyFriends(tmpVO1);
+		List<UserVO> friendList2 = friendService.getMyFriends(tmpVO2);
+		boolean alreadyFriend = false;
+		for(UserVO uVO : friendList1) {
+			if(uVO.getId().equals(plusId)) {
+				alreadyFriend = true;
+			}
+		}
+		for(UserVO uVO : friendList2) {
+			if(uVO.getId().equals(myId)) {
+				alreadyFriend = true;
+			}
+		}
+		
+		if(alreadyFriend) {
+			mav.addObject("data","already friend.");
+		}else {
+			if(getTmpVO2==null) {
+				mav.addObject("data","not exist User");
+			}else {
+				friendService.addFriend(myId, plusId);
+				mav.addObject("data",plusId + "plus complete.");
+			}
+			
+		}
+		
+		mav.setViewName("/ajaxForPrint");
+		return mav;
+		
 	}
 
 }

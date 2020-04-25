@@ -1,6 +1,8 @@
 package com.project.chat.friend;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,13 @@ public class FriendDAO {
 	
 	List<UserVO> getMyBannedFriends(UserVO userVO){
 		return sqlSessionTemplate.selectList("friendBatis.getMyBannedFriends",userVO);
+	}
+	
+	void addFriend(String myId , String plusId) {
+		Map<String,String> mp = new HashMap<>();
+		mp.put("myId",myId);
+		mp.put("plusId", plusId);
+		sqlSessionTemplate.update("friendBatis.addFriend",mp);
 	}
 	
 }

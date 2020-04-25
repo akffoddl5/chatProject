@@ -57,5 +57,17 @@ public class MainController {
 		return mav;
 	}
 	
+	@RequestMapping(value ="chattings.go")
+	ModelAndView goChattings(ModelAndView mav){
+		
+		mav.setViewName("/chattings");
+		return mav;
+	}
+	
+	@RequestMapping(value ="makeNewFriends.go")
+	ModelAndView goMakeNewFriends(ModelAndView mav) {
+		mav.setViewName("/makeNewFriends");
+		return mav;
+	}
 	
 }

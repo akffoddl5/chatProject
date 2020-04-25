@@ -12,6 +12,9 @@
 	INSERT INTO CHATUSER (id,password) VALUES (#{id},#{password})
 </insert>
 
+<delete id="banCancle">
+	delete from bannedFriends where myself = #{myId} and friend = #{banId} 
+</delete>
 
 
 

@@ -1,4 +1,7 @@
 package com.project.chat.user;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * create table chatUser(
  id varchar2(500) primary key,
@@ -52,6 +55,13 @@ public class UserDAO {
 	
 	public void insertUser(UserVO userVO) {
 		 sqlSessionTemplate.insert("userBatis.insertUser",userVO);
+	}
+	
+	public void banCancle(String myId , String banId) {
+		Map<String , String> mp = new HashMap<>();
+		mp.put("myId",myId);
+		mp.put("banId",banId);
+		sqlSessionTemplate.update("userBatis.banCancle",mp);
 	}
 	
 }

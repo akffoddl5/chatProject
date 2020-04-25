@@ -32,6 +32,12 @@ public class UserServiceImpl implements IUserService {
 		return userDAO.selectUser(user);
 		
 	}
+
+	@Override
+	public void banCancle(String myId, String banId) {
+		userDAO.banCancle(myId, banId);
+		
+	}
 	
 
 }

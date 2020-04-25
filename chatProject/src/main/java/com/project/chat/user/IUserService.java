@@ -6,4 +6,5 @@ public interface IUserService {
 	void updateUser(UserVO user);
 	void deleteUser(UserVO user);
 	UserVO selectUser(UserVO user);
+	void banCancle(String myId , String banId);
 }

@@ -15,4 +15,8 @@ select friend as name from friends where myself = #{id} and friend not in (selec
 	select * from chatuser where id in (select friend from bannedFriends where myself = #{id})
 	</select>
 	
+	<insert id="addFriend">
+	insert into friends (num,myself,friend) values(friends_seq.nextVal, #{myId} , #{plusId})
+	</insert>
+	
 </mapper>

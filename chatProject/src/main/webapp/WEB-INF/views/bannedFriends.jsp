@@ -24,9 +24,23 @@ Released   : 20130902
 <link href="resources/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
 
 <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
-function friendClick(id){
+function banCancle(id){
 	alert(id);
+	var myId = '${vo.id}';
+	alert(myId);
+	var query = {"myId" : myId , "banId" : id};
+	$.ajax({
+		url : "banCancle.do",
+		type : 'POST',
+		data : query,
+		success : function(data) {
+			alert("차단이 해제되었습니다.");
+			location.href="bannedFriends.go";
+		}
+	})
+	
 }
 
 </script>
@@ -42,17 +56,15 @@ function friendClick(id){
 		<div id="menu">
 			<ul>
 				<li><a href="index.go" accesskey="1" title="">My Friends</a></li>
-				<li><a href="#" accesskey="2" title="">Chattings</a></li>
-				<li><a href="#" accesskey="3" title="">MAKE NEW FRIENDS</a></li>
+				<li><a href="chattings.go" accesskey="2" title="">Chattings</a></li>
+				<li><a href="makeNewFriends.go" accesskey="3" title="">MAKE NEW FRIENDS</a></li>
 				<li class="current_page_item"><a href="bannedFriends.go" accesskey="4" title="">Banned Friends</a></li>
 				<li><a href="myProfile.go" accesskey="5" title="">My Profile</a></li>
 			</ul>
 		</div>
 	</div>
 	<div id="main">
-		<div id="banner">
-			<img src="resources/images/pic01.jpg" alt="" class="image-full" />
-		</div>
+		
 		
 		<div id="featured">
 			<div class="title">
@@ -71,7 +83,7 @@ function friendClick(id){
 					<h3>&nbsp;&nbsp;<b>${friendVO.id }</b></h3>
 					<p>${friendVO.stateMessage } &nbsp;</p>
 				</td>
-				<td><img src="resources/images/iconX.png" alt="" /> </td>
+				<td><img src="resources/images/iconX2.png" alt="" style="width: 70%; height: 30px; cursor: pointer;" onclick="banCancle('${friendVO.id}')"/> </td>
 				</tr>
 				</table>
 				

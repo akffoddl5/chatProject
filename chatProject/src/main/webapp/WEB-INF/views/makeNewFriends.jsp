@@ -24,10 +24,29 @@ Released   : 20130902
 <link href="resources/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
 
 <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
-function friendClick(id){
-	alert(id);
-}
+$(document).ready(function(){
+	$("#plusFriendBtn").click(function(){
+		var plusId = document.getElementById("idText").value;
+		alert(plusId);
+		var myId = '${vo.id}';
+		alert(myId);
+		var query = {"myId" : myId , "plusId" : plusId};
+		$.ajax({
+			url : "addFriend.do",
+			type : 'POST',
+			data : query,
+			success : function(data) {
+				alert(data);
+				document.getElementById("idText").value = '';
+			}
+		})
+		
+	});
+	
+	
+});
 
 </script>
 </head>
@@ -37,33 +56,53 @@ function friendClick(id){
 		<div id="logo">
 			<img src="resources/images/${vo.thumbnailPath }" style="height: 70px; width: 70px;" alt="" />
 			<h1><a href="#">${vo.id }</a></h1>
-			<span><a href="http://templated.co" rel="nofollow">회원탈퇴</a></span>
+			<span>Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a></span>
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="index.go" accesskey="1" title="">My Friends</a></li>
+				<li><a href="index.go" accesskey="1" title="">My Friends</a></li>
 				<li><a href="chattings.go" accesskey="2" title="">Chattings</a></li>
-				<li><a href="makeNewFriends.go" accesskey="3" title="">MAKE NEW FRIENDS</a></li>
+				<li class="current_page_item"><a href="makeNewFriends.go" accesskey="3" title="">MAKE NEW FRIENDS</a></li>
 				<li><a href="bannedFriends.go" accesskey="4" title="">Banned Friends</a></li>
 				<li><a href="myProfile.go" accesskey="5" title="">My Profile</a></li>
 			</ul>
 		</div>
 	</div>
 	<div id="main">
-		
+		<div class="title">
+				<h2>친구 추가</h2>
+				<span class="byline">친구 아이디를 입력해 친구추가 해보세요.</span><br></br>
+				<center>
+				<table style="width:60%;">
+				<tr style="height: 50px;">
+				<td style="width: 80%;"><input type="text" id="idText" style="width: 90%; height: 20px;" placeholder="아이디"></input></td><td style="width: 20%;"><button id = "plusFriendBtn">친구추가</button></td>
+				</tr>
+				</table>
+				</center>
+		</div>
 		
 		<div id="featured">
 			<div class="title">
-				<h2>My Friends</h2>
-				<span class="byline">내 친구들과 대화하세요.</span>
+				<h2>Ban List</h2>
+				<span class="byline">나의 차단 친구 관리</span>
 			</div>
 			<ul class="style1">
 			
-			<c:forEach items="${friendList }" var="friendVO">
-				<li style="cursor: pointer;" onclick="friendClick('${friendVO.id}')">
-					<p class="date"><img src="resources/images/${friendVO.thumbnailPath }" alt="" style="width: 100%; height:110%;" /></p>
-					<h3>&nbsp;${friendVO.id }</h3>
-					<p><a href="#">${friendVO.stateMessage } &nbsp;</a></p>
+			<c:forEach items="${bannedFriendList }" var="friendVO">
+				<li>
+				
+				<table style="width: 95%;">
+				<tr>
+				<td style="width: 90%;">
+				<p class="date"><img src="resources/images/${friendVO.thumbnailPath }" alt="" style="width: 100%; height:110%;" /></p>
+					<h3>&nbsp;&nbsp;<b>${friendVO.id }</b></h3>
+					<p>${friendVO.stateMessage } &nbsp;</p>
+				</td>
+				<td><img src="resources/images/iconX2.png" alt="" style="width: 70%; height: 30px; cursor: pointer;" onclick="banCancle('${friendVO.id}')"/> </td>
+				</tr>
+				</table>
+				
+					
 				</li>
 			</c:forEach>
 				
