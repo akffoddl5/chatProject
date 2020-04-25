@@ -18,4 +18,11 @@ public class FriendServiceImpl implements IFriendService {
 		return friendDAO.getMyFriends(userVO);
 	}
 
+	@Override
+	public List<UserVO> getMyBannedFriends(UserVO userVO) {
+		return friendDAO.getMyBannedFriends(userVO);
+	}
+	
+	
+
 }

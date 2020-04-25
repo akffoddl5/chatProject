@@ -19,4 +19,8 @@ public class FriendDAO {
 		
 	}
 	
+	List<UserVO> getMyBannedFriends(UserVO userVO){
+		return sqlSessionTemplate.selectList("friendBatis.getMyBannedFriends",userVO);
+	}
+	
 }

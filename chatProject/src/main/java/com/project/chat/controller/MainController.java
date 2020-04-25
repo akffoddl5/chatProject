@@ -41,5 +41,21 @@ public class MainController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/bannedFriends.go")
+	ModelAndView goBannedFriends(ModelAndView mav,HttpSession session) {
+		System.out.println("go index");
+		UserVO userVO = (UserVO)session.getAttribute("vo");
+		if(userVO != null) {
+			List<UserVO> bannedFriendList = friendService.getMyBannedFriends(userVO);
+			mav.addObject("bannedFriendList",bannedFriendList);
+			mav.addObject("bannedFriendNum",bannedFriendList.size());
+			System.out.println("bannedFriend Num :" + bannedFriendList.size());
+		}
+		
+		
+		mav.setViewName("/bannedFriends");
+		return mav;
+	}
+	
 	
 }

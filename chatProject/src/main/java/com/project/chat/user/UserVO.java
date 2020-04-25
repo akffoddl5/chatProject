@@ -5,6 +5,13 @@ public class UserVO {
 	String id;
 	String password;
 	String thumbnailPath;
+	String stateMessage;
+	public String getStateMessage() {
+		return stateMessage;
+	}
+	public void setStateMessage(String stateMessage) {
+		this.stateMessage = stateMessage;
+	}
 	public String getId() {
 		return id;
 	}
@@ -25,8 +32,10 @@ public class UserVO {
 	}
 	@Override
 	public String toString() {
-		return "UserVO [id=" + id + ", password=" + password + ", thumbnailPath=" + thumbnailPath + "]";
+		return "UserVO [id=" + id + ", password=" + password + ", thumbnailPath=" + thumbnailPath + ", stateMessage="
+				+ stateMessage + "]";
 	}
+	
 		
 
 }
