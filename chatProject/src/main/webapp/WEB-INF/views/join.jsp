@@ -28,8 +28,8 @@ Released   : 20130902
 
 
 	<center>
-	<h1 style="margin-top: 200px; color: white;"> Chat Site</h1>
-		<form action="login.do" >
+	<h1 style="margin-top: 200px; color: white;">JOIN</h1>
+		<form action="join.do" name="userInfo" >
 			<table border="1" style="width: 30%; height:200px; margin-top: 200px; color: white; text-align: center; ">
 
 				<tr>
@@ -40,9 +40,14 @@ Released   : 20130902
 					<td>비밀번호 :</td>
 					<td><input type="password" name="password" style="height: 80%; width: 80%; font-size: 18px;"></td>
 				</tr>
+				  <tr>
+					<td>프로필 이미지 : </td>
+					<td><input type="text" name="thumbnailPath"></input></td>
+				</tr>
+				
 				<tr>
-					<td colspan="2" align="center"><input type="submit" value="로그인" style="height: 80%; width: 20%; font-size: 18px;">
-					<input type="button" onclick="location.href='join.go'" value="회원가입" style="height: 80%; width: 20%; font-size: 18px;">
+					<td colspan="2" align="center">
+					<input type="submit" value="회원가입 완료" style="height: 80%; width: 20%; font-size: 18px;">
 					</td>
 					
 					
