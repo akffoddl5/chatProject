@@ -11,7 +11,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public void insertUser(UserVO user) {
-		// TODO Auto-generated method stub
+		userDAO.insertUser(user);
 		
 	}
 

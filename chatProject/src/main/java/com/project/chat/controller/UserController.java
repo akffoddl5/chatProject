@@ -25,8 +25,8 @@ public class UserController {
 		mav.setViewName("/login");
 		return mav;
 	}
+	
 	@RequestMapping(value="/login.do")
-
 	public ModelAndView loginDo(UserVO user,ModelAndView mav , HttpServletRequest request) {
 		System.out.println("=======user input ======");
 		System.out.println(user.getId());
@@ -39,7 +39,7 @@ public class UserController {
 			System.out.println("login success");
 			HttpSession session = request.getSession();
 			session.setAttribute("vo", userVO);
-			mav.setViewName("/index");
+			mav.setViewName("redirect:index.go");
 			return mav;
 		}else {
 			System.out.println("password error");
@@ -60,7 +60,7 @@ public class UserController {
 	public ModelAndView joinDo(ModelAndView mav,UserVO user) {
 		System.out.println("------Join USer Info--------");
 		System.out.println(user);
-		System.out.println("join.do");
+		userService.insertUser(user);
 		mav.setViewName("/login");
 		return mav;
 	}
