@@ -6,4 +6,6 @@ public interface IUserService {
 	void updateUser(UserVO user);
 	void deleteUser(UserVO user);
 	UserVO selectUser(UserVO user);
+	int userIdCheck(String user_id); //아이디 중복 체크
+	
 }
