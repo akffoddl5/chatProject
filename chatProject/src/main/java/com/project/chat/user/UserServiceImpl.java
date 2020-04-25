@@ -17,7 +17,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public void updateUser(UserVO user) {
-		// TODO Auto-generated method stub
+		userDAO.updateUser(user);
 		
 	}
 
@@ -38,6 +38,13 @@ public class UserServiceImpl implements IUserService {
 		userDAO.banCancle(myId, banId);
 		
 	}
+	public int userIdCheck(String user_id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+	
 	
 
 }

@@ -6,6 +6,7 @@ public class UserVO {
 	String password;
 	String thumbnailPath;
 	String stateMessage;
+	
 	public String getStateMessage() {
 		return stateMessage;
 	}
@@ -30,6 +31,7 @@ public class UserVO {
 	public void setThumbnailPath(String thumbnailPath) {
 		this.thumbnailPath = thumbnailPath;
 	}
+	
 	@Override
 	public String toString() {
 		return "UserVO [id=" + id + ", password=" + password + ", thumbnailPath=" + thumbnailPath + ", stateMessage="

@@ -16,6 +16,15 @@
 	delete from bannedFriends where myself = #{myId} and friend = #{banId} 
 </delete>
 
+<select id="checkOverId" parameterType="String" resultType="int">
+	SELECT COUNT(*) FROM CHATUSER WHERE ID = #{user_id}
+</select>
+
+<update id="updateUser" parameterType="userVO">
+	UPDATE CHATUSER SET stateMessage = #{stateMessage} , THUMBNAILPATH = #{thumbnailPath} WHERE Id = #{id}
+</update>
+
+
 
 
 </mapper>

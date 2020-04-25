@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.chat.friend.IFriendService;
@@ -70,6 +71,7 @@ public class UserController {
 		return mav;
 	}
 	
+
 	@RequestMapping(value = "/banCancle.do")
 	public ModelAndView banCancle(ModelAndView mav,HttpServletRequest request) {
 		System.out.println("banCancle exe");
@@ -121,7 +123,25 @@ public class UserController {
 		
 		mav.setViewName("/ajaxForPrint");
 		return mav;
-		
+	}
+	//----------------------���̵� �ߺ�üũ ��Ʈ�ѷ�
+	@RequestMapping(value = "/idCheck")
+	public int idCheck(@RequestParam("userId") String user_id) {	
+		return userService.userIdCheck(user_id);
+	}
+	
+	// ---------------------------ȸ�� ���� ���� 
+	@RequestMapping(value = "/updateUser.do")
+	public ModelAndView updateUser(ModelAndView mav,UserVO user ,HttpServletRequest request) {
+		System.out.println("------updateUser Info--------");
+		System.out.println(user);
+		userService.updateUser(user);
+		UserVO userVO = userService.selectUser(user);
+		HttpSession session = request.getSession();
+		session.setAttribute("vo", userVO);
+		mav.setViewName("redirect:myProfile.go");
+		return mav;
+
 	}
 
 }

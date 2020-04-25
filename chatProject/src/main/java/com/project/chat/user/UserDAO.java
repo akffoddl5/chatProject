@@ -15,27 +15,6 @@ create table friends(
  friend varchar2(500),
  regdate date default sysdate
 );
-
-select * from tab;
-
-select * from chatuser;
-
-alter table chatuser add (stateMessage varchar2(1000) default '');
-
-select * from friends;
-
-insert into chatuser (id,password) values('blue','blue');
-
-create table bannedFriends(
- num number(8) primary key,
- myself varchar2(500),
- friend varchar2(500),
- regdate date default sysdate
-);
-
-create sequence bannedFriends_seq;
-
-commit;
  * 
  * 
  */
@@ -63,5 +42,12 @@ public class UserDAO {
 		mp.put("banId",banId);
 		sqlSessionTemplate.update("userBatis.banCancle",mp);
 	}
+	public void updateUser(UserVO userVO) {
+		 sqlSessionTemplate.update("userBatis.updateUser",userVO);
+	}
+
+
+	
+
 	
 }
