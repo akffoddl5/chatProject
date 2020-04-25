@@ -41,7 +41,11 @@ Released   : 20130902
 					<td><input type="password" name="password" style="height: 80%; width: 80%; font-size: 18px;"></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="submit" value="로그인" style="height: 80%; width: 20%; font-size: 18px;"></td>
+					<td colspan="2" align="center"><input type="submit" value="로그인" style="height: 80%; width: 20%; font-size: 18px;">
+					<input type="button" onclick="location.href='join.go'" value="회원가입" style="height: 80%; width: 20%; font-size: 18px;">
+					</td>
+					
+					
 				</tr>
 
 			</table>

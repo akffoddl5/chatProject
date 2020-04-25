@@ -37,7 +37,7 @@ function friendClick(id){
 		<div id="logo">
 			<img src="resources/images/${vo.thumbnailPath }" style="height: 70px; width: 70px;" alt="" />
 			<h1><a href="#">${vo.id }</a></h1>
-			<span>Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a></span>
+			<span><a href="http://templated.co" rel="nofollow">회원탈퇴</a></span>
 		</div>
 		<div id="menu">
 			<ul>

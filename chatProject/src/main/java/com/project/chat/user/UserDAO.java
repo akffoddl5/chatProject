@@ -50,4 +50,8 @@ public class UserDAO {
 		return sqlSessionTemplate.selectOne("userBatis.getUser",userVO);
 	}
 	
+	public void insertUser(UserVO userVO) {
+		 sqlSessionTemplate.insert("userBatis.insertUser",userVO);
+	}
+	
 }

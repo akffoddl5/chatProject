@@ -48,5 +48,21 @@ public class UserController {
 
 		return mav;
 	}
+	// ---------------- 회원가입 
+	@RequestMapping(value="/join.go")
+	public ModelAndView joinGo(ModelAndView mav){
+		System.out.println("join.go");
+		mav.setViewName("/join");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/join.do")
+	public ModelAndView joinDo(ModelAndView mav,UserVO user) {
+		System.out.println("------Join USer Info--------");
+		System.out.println(user);
+		userService.insertUser(user);
+		mav.setViewName("/login");
+		return mav;
+	}
 
 }
