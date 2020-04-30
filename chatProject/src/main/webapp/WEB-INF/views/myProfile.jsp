@@ -37,7 +37,29 @@ Released   : 20130902
 	media="all" />
 
 <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+ <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+ <script type="text/javascript">
+    
+ 		$(function() {
+            $("#profileImage").on('change', function(){
+                readURL1(this);
+            });
+        });
 
+        function readURL1(input) {
+            if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                    $("#imagePreview").attr('src', e.target.result);
+                }
+
+              reader.readAsDataURL(input.files[0]);
+              
+            }
+        }
+        
+ </script>
 </head>
 <body>
 
@@ -64,25 +86,31 @@ Released   : 20130902
 				<h1>회원 정보</h1>
 			</p>
 			<br></br>
-			<form action="updateUser.do">
+			<form action="updateUser.do" method="post" enctype="multipart/form-data">
 				<table
 					style="text-align: left; margin-left: auto; margin-right: auto;">
 					<tr>
 						<td rowspan="3"><img
 							src="resources/images/${vo.thumbnailPath }"
-							style="height: 300px; width: 300px;" alt="" /></td>
+							style="height: 300px; width: 300px;" alt=""  id="imagePreview"/></td>
 						<td><h2>아이디 : ${vo.id}</h2></td>
 					</tr>
 					<tr>
 						<td><h2>상태 메세지</h2> <textarea rows="5" cols="55" name="stateMessage">${vo.stateMessage }</textarea></td>
 					</tr>
 					<tr>
-						<td><h2>프로필 이미지 변경</h2></td>
+						<td><h2>프로필 이미지 변경</h2><input type="file" name="profileImage" id="profileImage"></input></td>
 					</tr>
 				</table><br></br>
 					<input type="hidden" value="${vo.id}" name = "id"></input>
+<<<<<<< HEAD
 					<input type="hidden" value="default2.jpeg" name = "thumbnailPath"></input> 
 					<input type="submit" onclick = "updateUser('${vo.id}')"value="회원정보 수정완료" style="height: 80%; width: 20%; font-size: 18px;"></input>
+=======
+					
+					<input type="submit" value="회원정보 수정완료" style="height: 80%; width: 20%; font-size: 18px;"></input>
+					<input type="reset" value="취소" style="height: 80%; width: 20%; font-size: 18px;"></input>
+>>>>>>> 0753f8a11e828b0c4532f166d9754ad3291a3784
 			</form>
 		</div> 	
 

@@ -59,11 +59,11 @@ function friendClick(id){
 			</div>
 			<ul class="style1">
 			
-			<c:forEach items="${friendList }" var="friendVO">
-				<li style="cursor: pointer;" onclick="friendClick('${friendVO.id}')">
-					<p class="date"><img src="resources/images/${friendVO.thumbnailPath }" alt="" style="width: 100%; height:110%;" /></p>
-					<h3>&nbsp;${friendVO.id }</h3>
-					<p><a href="#">${friendVO.stateMessage } &nbsp;</a></p>
+			<c:forEach items="${myChatRooms }" var="chatRoomDTO">
+				<li style="cursor: pointer;" >
+					<p class="date">123</p>
+					<h3>&nbsp;${chatRoomDTO.participants}</h3>
+					<p><a href="#">${chatRoomDTO.recentContent }&nbsp;</a></p>
 				</li>
 			</c:forEach>
 				

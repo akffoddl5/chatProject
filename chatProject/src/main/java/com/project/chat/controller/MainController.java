@@ -2,7 +2,10 @@ package com.project.chat.controller;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import javax.mail.Session;
+=======
+>>>>>>> 0753f8a11e828b0c4532f166d9754ad3291a3784
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.chat.chatting.ChatRoomDTO;
+import com.project.chat.chatting.IChatService;
 import com.project.chat.friend.IFriendService;
 import com.project.chat.user.UserVO;
 
@@ -20,6 +25,9 @@ public class MainController {
 	
 	@Autowired
 	private IFriendService friendService;
+	
+	@Autowired
+	private IChatService chatService;
 	
 	@RequestMapping(value="/myProfile.go")
 	ModelAndView goMyProfile(ModelAndView mav) {
@@ -61,7 +69,17 @@ public class MainController {
 	}
 	
 	@RequestMapping(value ="chattings.go")
-	ModelAndView goChattings(ModelAndView mav){
+	ModelAndView goChattings(ModelAndView mav, HttpServletRequest request){
+		UserVO userVO = (UserVO)request.getSession().getAttribute("vo");
+		List<ChatRoomDTO> list = null;
+		if(userVO!=null) {
+			list = chatService.getMyChatRooms(userVO);
+			mav.addObject("myChatRooms",list);
+			
+			System.out.println("채팅방 수 : "+list.size());
+		}
+		
+		
 		
 		mav.setViewName("/chattings");
 		return mav;

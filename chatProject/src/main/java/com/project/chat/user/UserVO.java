@@ -6,7 +6,13 @@ public class UserVO {
 	String password;
 	String thumbnailPath;
 	String stateMessage;
-	
+	String chatRooms;
+	public String getChatRooms() {
+		return chatRooms;
+	}
+	public void setChatRooms(String chatRooms) {
+		this.chatRooms = chatRooms;
+	}
 	public String getStateMessage() {
 		return stateMessage;
 	}
