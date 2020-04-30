@@ -103,14 +103,10 @@ Released   : 20130902
 					</tr>
 				</table><br></br>
 					<input type="hidden" value="${vo.id}" name = "id"></input>
-<<<<<<< HEAD
-					<input type="hidden" value="default2.jpeg" name = "thumbnailPath"></input> 
-					<input type="submit" onclick = "updateUser('${vo.id}')"value="회원정보 수정완료" style="height: 80%; width: 20%; font-size: 18px;"></input>
-=======
+
 					
 					<input type="submit" value="회원정보 수정완료" style="height: 80%; width: 20%; font-size: 18px;"></input>
 					<input type="reset" value="취소" style="height: 80%; width: 20%; font-size: 18px;"></input>
->>>>>>> 0753f8a11e828b0c4532f166d9754ad3291a3784
 			</form>
 		</div> 	
 

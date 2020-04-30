@@ -2,10 +2,7 @@ package com.project.chat.controller;
 
 import java.util.List;
 
-<<<<<<< HEAD
-import javax.mail.Session;
-=======
->>>>>>> 0753f8a11e828b0c4532f166d9754ad3291a3784
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -76,7 +73,7 @@ public class MainController {
 			list = chatService.getMyChatRooms(userVO);
 			mav.addObject("myChatRooms",list);
 			
-			System.out.println("채팅방 수 : "+list.size());
+			System.out.println("梨꾪똿諛� �닔 : "+list.size());
 		}
 		
 		
@@ -94,6 +91,7 @@ public class MainController {
 	@RequestMapping(value ="friendBlock.do")
 	ModelAndView friendBlock(@RequestParam("friendId") String friend_Id,ModelAndView mav,HttpSession session){
 		UserVO user = (UserVO)session.getAttribute("vo");
+		System.out.println("ASDFASDF");
 		friendService.blockFriend(user.getId(),friend_Id);
 		mav.setViewName("redirect:bannedFriends.go");
 		return mav;

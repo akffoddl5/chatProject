@@ -27,11 +27,14 @@ Released   : 20130902
 
 <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
 <script>
+
 function friendClick(id){
 	alert(id);
 }
 
 function friendBlock(id){
+	
+	alert("DDD");
 	if(confirm(id +"님을 차단하시겠습니까 ? ")){
 		alert("차단 하였습니다");
 		location.href="/chat/friendBlock.do?friendId="+id
@@ -42,7 +45,7 @@ function friendBlock(id){
 	}
 
 
-
+}
 </script>
   <style>
         /* The Modal (background) */
@@ -106,7 +109,6 @@ function friendBlock(id){
 					<h3>&nbsp;${friendVO.id }</h3>
 					<p>${friendVO.stateMessage } &nbsp;</p>
 				</li>
-<<<<<<< HEAD
 				 <p><a onclick="friendChat('${friendVO.id}')" style="text-align: right;">채팅하기</a></p>
 				 <p><a href="#" onclick="friendBlock('${friendVO.id}')" style="text-align: right;">차단</a></p>
 				 
