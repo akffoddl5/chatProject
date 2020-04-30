@@ -27,6 +27,12 @@ public class FriendServiceImpl implements IFriendService {
 	public void addFriend(String myId, String plusId) {
 		friendDAO.addFriend(myId, plusId);
 	}
+
+	@Override
+	public void blockFriend(String myId, String plusId) {
+		friendDAO.blockFriend(myId, plusId);
+		
+	}
 	
 	
 

@@ -2,11 +2,14 @@ package com.project.chat.controller;
 
 import java.util.List;
 
+import javax.mail.Session;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.chat.friend.IFriendService;
@@ -69,5 +72,15 @@ public class MainController {
 		mav.setViewName("/makeNewFriends");
 		return mav;
 	}
+	
+	@RequestMapping(value ="friendBlock.do")
+	ModelAndView friendBlock(@RequestParam("friendId") String friend_Id,ModelAndView mav,HttpSession session){
+		UserVO user = (UserVO)session.getAttribute("vo");
+		friendService.blockFriend(user.getId(),friend_Id);
+		mav.setViewName("redirect:bannedFriends.go");
+		return mav;
+	}
+	
+	
 	
 }
