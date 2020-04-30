@@ -5,11 +5,14 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.project.chat.user.UserVO" alias="userVO"></typeAlias>
+		<typeAlias type="com.project.chat.chatting.ChatRoomDTO" alias="chatRoomDTO"></typeAlias>
+		<typeAlias type="com.project.chat.chatting.ChatContentDTO" alias="chatContentDTO"></typeAlias>
 	</typeAliases>
 	
 	
 	<mappers>
 		<mapper resource="mappings/user-mapping.xml" />
 		<mapper resource="mappings/friend-mapping.xml" />
+		<mapper resource="mappings/chat-mapping.xml" />
 	</mappers>
 </configuration>

@@ -1,7 +1,10 @@
 package com.project.chat.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.chat.friend.IFriendService;
@@ -132,8 +136,38 @@ public class UserController {
 	
 	// ---------------------------ȸ�� ���� ���� 
 	@RequestMapping(value = "/updateUser.do")
-	public ModelAndView updateUser(ModelAndView mav,UserVO user ,HttpServletRequest request) {
+	public ModelAndView updateUser(ModelAndView mav,@RequestParam("profileImage") MultipartFile profileImage,UserVO user ,HttpServletRequest request) {
 		System.out.println("------updateUser Info--------");
+		
+		System.out.println(profileImage.getOriginalFilename());
+		if(profileImage.isEmpty()) {
+			System.out.println("empty 되긴하네");
+			UserVO userVO = (UserVO)request.getSession().getAttribute("vo");
+			if(userVO != null) {
+				user.setThumbnailPath(userVO.getThumbnailPath());
+			}
+		}else {
+			System.out.println("null 아님");
+			String imageName = profileImage.getOriginalFilename();
+			ServletContext context = request.getServletContext();
+			String saveDir = context.getRealPath("/resources/images/");
+			File file1 = new File(saveDir + imageName);
+
+			try {
+				profileImage.transferTo(file1);
+
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			System.out.println(saveDir + imageName);
+			user.setThumbnailPath(imageName);
+		}
+		
+		
+		
+		
 		System.out.println(user);
 		userService.updateUser(user);
 		UserVO userVO = userService.selectUser(user);
