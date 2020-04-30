@@ -86,4 +86,10 @@ public class MainController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "modalPrac.go")
+	ModelAndView goModalPrac(ModelAndView mav) {
+		mav.setViewName("/modalPrac");
+		return mav;
+	}
+	
 }

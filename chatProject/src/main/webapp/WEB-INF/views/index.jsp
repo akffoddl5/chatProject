@@ -20,12 +20,15 @@ Released   : 20130902
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
-<link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" >
 <link href="resources/css/default.css" rel="stylesheet" type="text/css" media="all" />
 
 <link href="resources/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
 
 <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 function friendClick(id){
 	alert(id);
@@ -62,7 +65,7 @@ function friendClick(id){
 			<ul class="style1">
 			
 			<c:forEach items="${friendList }" var="friendVO">
-				<li style="cursor: pointer;" data-toggle="modal" data-target="#myPopUp" >
+				<li style="cursor: pointer;" data-toggle="modal" data-target="#myPopUp" onclick="friendClick('${friendVO.id}')" >
 					<p class="date"><img src="resources/images/${friendVO.thumbnailPath }" alt="" style="width: 100%; height:110%;" /></p>
 					<h3>&nbsp;${friendVO.id }</h3>
 					<p>${friendVO.stateMessage } &nbsp;</p>
@@ -78,7 +81,12 @@ function friendClick(id){
 	      </div>
 	      <div class="modal-body" style="height: 800px;">
 	      ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇqwe
+	     <div class="chatContent" style="border"></div> 
+	     <div class="inputText">
+	     <input type="text" placeholder="채팅을 입력하세요"></input> <button>전송</button>
+	     </div>
 	      </div>
+	      
 	    </div>
 	  </div>
 	</div>
