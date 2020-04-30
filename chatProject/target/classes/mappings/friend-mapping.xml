@@ -18,5 +18,7 @@ select friend as name from friends where myself = #{id} and friend not in (selec
 	<insert id="addFriend">
 	insert into friends (num,myself,friend) values(friends_seq.nextVal, #{myId} , #{plusId})
 	</insert>
-	
+	<insert id="blockFriend">
+	insert into bannedfriends (num,myself,friend) values(bannedfriends_seq.nextVal , #{myId},#{plusId})
+	</insert>
 </mapper>

@@ -14,6 +14,16 @@ Released   : 20130902
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<script>
+	function updateUser(id){
+		alert("[ "+id+" ]" + " 님의 정보 업데이트 완료");
+		
+	}
+
+
+
+
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
 <meta name="keywords" content="" />
@@ -93,6 +103,7 @@ Released   : 20130902
 					</tr>
 				</table><br></br>
 					<input type="hidden" value="${vo.id}" name = "id"></input>
+
 					
 					<input type="submit" value="회원정보 수정완료" style="height: 80%; width: 20%; font-size: 18px;"></input>
 					<input type="reset" value="취소" style="height: 80%; width: 20%; font-size: 18px;"></input>

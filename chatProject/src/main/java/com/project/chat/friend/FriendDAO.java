@@ -32,4 +32,11 @@ public class FriendDAO {
 		sqlSessionTemplate.update("friendBatis.addFriend",mp);
 	}
 	
+	void blockFriend(String myId, String plusId) {
+		Map<String,String> bp = new HashMap<>();
+		bp.put("myId",myId);
+		bp.put("plusId",plusId);
+		sqlSessionTemplate.insert("friendBatis.blockFriend",bp);
+
+	}
 }

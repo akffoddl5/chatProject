@@ -30,11 +30,53 @@ Released   : 20130902
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
+
 function friendClick(id){
 	alert(id);
 }
 
+function friendBlock(id){
+	
+	alert("DDD");
+	if(confirm(id +"님을 차단하시겠습니까 ? ")){
+		alert("차단 하였습니다");
+		location.href="/chat/friendBlock.do?friendId="+id
+		
+	}
+	else{
+		return false;
+	}
+
+
+}
 </script>
+  <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+    
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%; /* Could be more or less, depending on screen size */                          
+        }
+ 
+</style>
+
+
 </head>
 <body>
 <div id="page" class="container">
@@ -70,6 +112,9 @@ function friendClick(id){
 					<h3>&nbsp;${friendVO.id }</h3>
 					<p>${friendVO.stateMessage } &nbsp;</p>
 				</li>
+				 <p><a onclick="friendChat('${friendVO.id}')" style="text-align: right;">채팅하기</a></p>
+				 <p><a href="#" onclick="friendBlock('${friendVO.id}')" style="text-align: right;">차단</a></p>
+				 
 			</c:forEach>
 			
 				
@@ -93,11 +138,9 @@ function friendClick(id){
 			
 				
 				
-				<li>
-					<p class="date"><a href="#"></a></p>
-					<h3>Sagittis diam dolor amet</h3>
-					<p><a href="#">Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem. Mauris quam enim, molestie. Donec leo, vivamus fermentum nibh in augue praesent congue rutrum.</a></p>
-				</li>
+
+				 	
+	
 				
 			</ul>
 		</div>
