@@ -20,7 +20,9 @@ Released   : 20130902
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+<link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
 <link href="resources/css/default.css" rel="stylesheet" type="text/css" media="all" />
+
 <link href="resources/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
 
 <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
@@ -60,12 +62,28 @@ function friendClick(id){
 			<ul class="style1">
 			
 			<c:forEach items="${friendList }" var="friendVO">
-				<li style="cursor: pointer;" onclick="friendClick('${friendVO.id}')">
+				<li style="cursor: pointer;" data-toggle="modal" data-target="#myPopUp" >
 					<p class="date"><img src="resources/images/${friendVO.thumbnailPath }" alt="" style="width: 100%; height:110%;" /></p>
 					<h3>&nbsp;${friendVO.id }</h3>
-					<p><a href="#">${friendVO.stateMessage } &nbsp;</a></p>
+					<p>${friendVO.stateMessage } &nbsp;</p>
 				</li>
 			</c:forEach>
+			
+				
+				 <div class="modal fade" id="myPopUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header" style="width: 100%;">
+		모달 헤더
+	      </div>
+	      <div class="modal-body" style="height: 800px;">
+	      ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇqwe
+	      </div>
+	    </div>
+	  </div>
+	</div>
+			
+				
 				
 				<li>
 					<p class="date"><a href="#"></a></p>

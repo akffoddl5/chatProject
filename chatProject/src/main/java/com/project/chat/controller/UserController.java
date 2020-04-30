@@ -165,9 +165,7 @@ public class UserController {
 			user.setThumbnailPath(imageName);
 		}
 		
-		
-		
-		
+
 		System.out.println(user);
 		userService.updateUser(user);
 		UserVO userVO = userService.selectUser(user);
