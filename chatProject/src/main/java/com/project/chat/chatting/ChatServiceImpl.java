@@ -16,6 +16,11 @@ public class ChatServiceImpl implements IChatService {
 	public List<ChatRoomDTO> getMyChatRooms(UserVO userVO){
 		return chatDAO.getMyChatRooms(userVO);
 	}
+
+	@Override
+	public int getSoloChatRoomNum(String case1, String case2) {
+		return chatDAO.getSoloChatRoomNum(case1, case2);
+	}
 	
 	
 }

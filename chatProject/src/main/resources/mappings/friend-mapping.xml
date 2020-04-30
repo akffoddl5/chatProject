@@ -5,9 +5,12 @@
 <mapper namespace="friendBatis">
 	
 	<select id="getMyFriends" resultType="userVO" parameterType="userVO">
-	  select * from chatuser where id in (
+	   select * from chatuser where id in (
 select friend as name from friends where myself = #{id} and friend not in (select friend from bannedFriends  where myself = #{id})
  
+ union 
+ 
+ select myself as name from friends where friend = #{id} and myself not in (select friend from bannedFriends  where myself = #{id}) 
 ) order by id
 	</select>
 	
