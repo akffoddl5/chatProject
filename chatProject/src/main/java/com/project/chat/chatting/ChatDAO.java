@@ -21,7 +21,6 @@ public class ChatDAO {
 		Map<String,Object> mp = new HashMap<>(); 
 		mp.put("chatRoomNumList", chatRoomsArray);
 		return sqlSessionTemplate.selectList("getMyChatRooms",mp);
-		
 	}
 	
 	int getSoloChatRoomNum(String case1 , String case2) {
