@@ -129,20 +129,6 @@ public class UserController {
 		return mav;
 	}
 	
-	//----------------------Recommend friends 
-	@RequestMapping(value = "/reFriends")
-	public ModelAndView reFriends(ModelAndView mav, HttpSession session) {
-		UserVO userVO = (UserVO)session.getAttribute("vo");
-		
-		return mav;
-		
-	}
-	
-	
-	
-	
-	
-	
 	//----------------------占쏙옙占싱듸옙 占쌩븝옙체크 占쏙옙트占싼뤄옙
 	@RequestMapping(value = "/idCheck")
 	public int idCheck(@RequestParam("userId") String user_id) {	

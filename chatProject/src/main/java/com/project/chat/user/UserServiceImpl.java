@@ -32,6 +32,12 @@ public class UserServiceImpl implements IUserService {
 		return userDAO.selectUser(user);
 		
 	}
+	
+	@Override
+	public UserVO getUser(String id) {
+		return userDAO.getUser(id);
+
+	}
 
 	@Override
 	public void banCancle(String myId, String banId) {
@@ -42,6 +48,8 @@ public class UserServiceImpl implements IUserService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
 
 	
 	

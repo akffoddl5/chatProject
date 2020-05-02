@@ -32,6 +32,10 @@ public class UserDAO {
 		return sqlSessionTemplate.selectOne("userBatis.getUser",userVO);
 	}
 	
+	public UserVO getUser(String Id) {
+		return sqlSessionTemplate.selectOne("userBatis.getUser",Id);
+	}
+	
 	public void insertUser(UserVO userVO) {
 		 sqlSessionTemplate.insert("userBatis.insertUser",userVO);
 	}

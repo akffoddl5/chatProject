@@ -16,6 +16,8 @@ select friend as name from friends where myself = #{id} and friend not in (selec
 	<select id="getAllMyFriends" resultType="userVO" parameterType="userVO">
 	 	select * from chatuser where id in (
 	 	select friend as name from friends where myself = #{id}
+	 	union
+	 	select myself as name from friends where friend = #{id}
 	 	) order by id
 	</select>
 	
