@@ -31,6 +31,8 @@ Released   : 20130902
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 function friendClick(id){
+
+	document.getElementById("partner").textContent= id;
 	alert("soloChat 상대 : "+id);
   	var myId = '${vo.id}';
   	var query = {"myId" : myId , "partnerId" : id};
@@ -66,6 +68,7 @@ function friendBlock(id){
 
 }
 </script>
+
 
 <script>
 $(document).ready(function(){
@@ -187,6 +190,7 @@ $(document).ready(function(){
 </script>
 
 
+
 </head>
 <body>
 <div id="page" class="container">
@@ -228,22 +232,29 @@ $(document).ready(function(){
 			</c:forEach>
 			
 				
-				 <div class="modal fade" id="myPopUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+ <div class="modal fade" id="myPopUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header" style="width: 100%;">
+
 		모달 헤더
 		<input type="hidden" id = "hiddenId"></input>
 		<input type="hidden" id = "hiddenNum"></input>
 	      </div>
+
+		<h1><div id="partner"></div></h1><h3>님과의 채팅</h3>	      </div>
+
 	      <div class="modal-body" style="height: 800px;">
-	      ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇqwe
-	     <div class="chatContent" style="border"></div> 
-	     <div class="inputText">
-	     <input type="text" placeholder="채팅을 입력하세요"></input> <button>전송</button>
+	           <div class="chatContent" style="height: 700px; border: 1px;"  >
+	     		## 채팅 내용 영역 ## 
+	     </div> 
+		
+	
+	     <div class="inputText" >
+	     <input type="text" placeholder="채팅을 입력하세요" style="width: 500px;"></input>
+	     <button>전송</button>
 	     </div>
 	      </div>
-	      
 	    </div>
 	  </div>
 	</div>

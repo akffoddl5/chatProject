@@ -58,7 +58,7 @@ public class UserController {
 
 		return mav;
 	}
-	// ---------------- ȸ������ 
+	// ---------------- 회占쏙옙占쏙옙占쏙옙 
 	@RequestMapping(value="/join.go")
 	public ModelAndView joinGo(ModelAndView mav){
 		System.out.println("join.go");
@@ -128,26 +128,41 @@ public class UserController {
 		mav.setViewName("/ajaxForPrint");
 		return mav;
 	}
-	//----------------------���̵� �ߺ�üũ ��Ʈ�ѷ�
+	
+	//----------------------Recommend friends 
+	@RequestMapping(value = "/reFriends")
+	public ModelAndView reFriends(ModelAndView mav, HttpSession session) {
+		UserVO userVO = (UserVO)session.getAttribute("vo");
+		
+		return mav;
+		
+	}
+	
+	
+	
+	
+	
+	
+	//----------------------占쏙옙占싱듸옙 占쌩븝옙체크 占쏙옙트占싼뤄옙
 	@RequestMapping(value = "/idCheck")
 	public int idCheck(@RequestParam("userId") String user_id) {	
 		return userService.userIdCheck(user_id);
 	}
 	
-	// ---------------------------ȸ�� ���� ���� 
+	// ---------------------------회占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 
 	@RequestMapping(value = "/updateUser.do")
 	public ModelAndView updateUser(ModelAndView mav,@RequestParam("profileImage") MultipartFile profileImage,UserVO user ,HttpServletRequest request) {
 		System.out.println("------updateUser Info--------");
 		
 		System.out.println(profileImage.getOriginalFilename());
 		if(profileImage.isEmpty()) {
-			System.out.println("empty 되긴하네");
+			System.out.println("empty �릺湲댄븯�꽕");
 			UserVO userVO = (UserVO)request.getSession().getAttribute("vo");
 			if(userVO != null) {
 				user.setThumbnailPath(userVO.getThumbnailPath());
 			}
 		}else {
-			System.out.println("null 아님");
+			System.out.println("null �븘�떂");
 			String imageName = profileImage.getOriginalFilename();
 			ServletContext context = request.getServletContext();
 			String saveDir = context.getRealPath("/resources/images/");

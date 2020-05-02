@@ -13,6 +13,11 @@ select friend as name from friends where myself = #{id} and friend not in (selec
  select myself as name from friends where friend = #{id} and myself not in (select friend from bannedFriends  where myself = #{id}) 
 ) order by id
 	</select>
+	<select id="getAllMyFriends" resultType="userVO" parameterType="userVO">
+	 	select * from chatuser where id in (
+	 	select friend as name from friends where myself = #{id}
+	 	) order by id
+	</select>
 	
 	<select id="getMyBannedFriends" resultType="userVO" parameterType="userVO">
 	select * from chatuser where id in (select friend from bannedFriends where myself = #{id})

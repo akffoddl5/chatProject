@@ -1,5 +1,6 @@
 package com.project.chat.controller;
 
+import java.util.HashSet;
 import java.util.List;
 
 
@@ -22,7 +23,6 @@ public class MainController {
 	
 	@Autowired
 	private IFriendService friendService;
-	
 	@Autowired
 	private IChatService chatService;
 	
@@ -83,7 +83,24 @@ public class MainController {
 	}
 	
 	@RequestMapping(value ="makeNewFriends.go")
-	ModelAndView goMakeNewFriends(ModelAndView mav) {
+	ModelAndView goMakeNewFriends(ModelAndView mav,HttpSession session) {
+		UserVO userVO = (UserVO)session.getAttribute("vo");
+		System.out.println("접속중인 계정 정보 [추천 제외 계정] : " + userVO.getId());
+		HashSet<String> hs = new HashSet<>();
+		List<ChatRoomDTO> chatRoom = chatService.getMyChatRooms(userVO);
+		for (ChatRoomDTO chatRoomDTO : chatRoom) {
+			String[] partipants = chatRoomDTO.getParticipants().split(":");
+			for(String par:partipants) {
+				hs.add(par);
+			}
+	}
+		hs.remove(userVO.getId());
+		List<UserVO> friends = friendService.getAllMyFriends(userVO);
+		System.out.println(friends);
+		for(UserVO friendId :friends) {
+			hs.remove(friendId.getId());
+		}
+		System.out.println(hs);
 		mav.setViewName("/makeNewFriends");
 		return mav;
 	}
