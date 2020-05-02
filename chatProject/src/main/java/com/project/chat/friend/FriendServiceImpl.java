@@ -9,19 +9,26 @@ import com.project.chat.user.UserVO;
 
 @Service
 public class FriendServiceImpl implements IFriendService {
-	
+
 	@Autowired
 	private FriendDAO friendDAO;
-	
+
 	@Override
 	public List<UserVO> getMyFriends(UserVO userVO) {
 		return friendDAO.getMyFriends(userVO);
 	}
 
 	@Override
+	public List<UserVO> getAllMyFriends(UserVO userVO) {
+		return friendDAO.getAllMyFriends(userVO);
+
+	}
+	
+	@Override
 	public List<UserVO> getMyBannedFriends(UserVO userVO) {
 		return friendDAO.getMyBannedFriends(userVO);
 	}
+
 
 	@Override
 	public void addFriend(String myId, String plusId) {
@@ -33,7 +40,6 @@ public class FriendServiceImpl implements IFriendService {
 		friendDAO.blockFriend(myId, plusId);
 		
 	}
-	
-	
 
+	
 }

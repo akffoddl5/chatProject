@@ -32,7 +32,11 @@ Released   : 20130902
 <script>
 
 function friendClick(id){
-	alert(id);
+	<%--alert(id);
+	$('#partner').value = id;
+	alert("DDDD" + document.getElementById("partner").value);--%>
+	document.getElementById("partner").textContent= id;
+	
 }
 
 function friendBlock(id){
@@ -50,31 +54,7 @@ function friendBlock(id){
 
 }
 </script>
-  <style>
-        /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-    
-        /* Modal Content/Box */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 30%; /* Could be more or less, depending on screen size */                          
-        }
  
-</style>
 
 
 </head>
@@ -118,20 +98,22 @@ function friendBlock(id){
 			</c:forEach>
 			
 				
-				 <div class="modal fade" id="myPopUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+ <div class="modal fade" id="myPopUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header" style="width: 100%;">
-		모달 헤더
-	      </div>
+		<h1><div id="partner"></div></h1><h3>님과의 채팅</h3>	      </div>
 	      <div class="modal-body" style="height: 800px;">
-	      ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇqwe
-	     <div class="chatContent" style="border"></div> 
-	     <div class="inputText">
-	     <input type="text" placeholder="채팅을 입력하세요"></input> <button>전송</button>
+	           <div class="chatContent" style="height: 700px; border: 1px;"  >
+	     		## 채팅 내용 영역 ## 
+	     </div> 
+		
+	
+	     <div class="inputText" >
+	     <input type="text" placeholder="채팅을 입력하세요" style="width: 500px;"></input>
+	     <button>전송</button>
 	     </div>
 	      </div>
-	      
 	    </div>
 	  </div>
 	</div>
