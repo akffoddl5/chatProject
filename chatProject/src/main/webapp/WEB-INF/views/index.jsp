@@ -69,11 +69,11 @@ function friendBlock(id){
 }
 </script>
 
-
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
 $(document).ready(function(){
 	   
-	   var wsUri = "ws://localhost:8080/chat/echo.do";
+	   var wsUri = "ws://172.30.1.46:8080/chat/echo.do";
 
 	    websocket = new WebSocket(wsUri);
 	//딱봐도 알거라고 믿겟음 함수명이 모든걸 말아주고있져?
@@ -88,7 +88,15 @@ $(document).ready(function(){
 	        onMessage(evt);
 	    };
 	    
+	    websocket.onclose = function(message){
+
+	    	
+			alert(message);
+			websocket = new WebSocket(wsUri);
+        };
+	    
 	    function printMessage(evt){
+	    	alert("chat 받았음");
 	       $("#chatList").append(evt);
 	    }
 	    
@@ -101,7 +109,8 @@ $(document).ready(function(){
 	    
 	    $("#eachList").click(function(){
 		      alert("eachlist click");
-		      
+		      websocket = new WebSocket(wsUri);
+		     
 		       
 		});
 	    
@@ -109,12 +118,16 @@ $(document).ready(function(){
 	    
 	    $("#chatSendBtn").click(function(){
 	       var content = document.getElementById("chatSend").value;
-	       var myId = document.getElementById("idText").value;
-	       var finalValue = myId+"!learnChatKey!"+content;
+	       var partnerId = document.getElementById("hiddenId").value;
+	       var roomNum = document.getElementById("hiddenNum").value;
+	       var myId = '${vo.id}';
+	       var myThumbnail = '${vo.thumbnailPath}';
+	       alert(myId);
+	       var finalValue = roomNum+"!ChatKey!"+content+"!ChatKey!"+myId+"!ChatKey!"+myThumbnail;
 	       doSend(finalValue);
 	       $('#chatSend').val('');
 	       
-	       var query = {userId : myId ,content : content};
+	       var query = {"myId" : myId ,"content" : content, "roomNum" : roomNum,"thumnailPath":myThumbnail};
 	       $.ajax({
 	            type: "POST",
 	            url: "insertChat.do",
@@ -132,7 +145,7 @@ $(document).ready(function(){
 	    }
 
 	    function onMessage(evt) {
-
+			alert("chat 받았음");
 	        var recv = JSON.parse(evt.data);
 	        if(recv.type=='time')
 	            $('#time').text(recv.time);
@@ -221,7 +234,7 @@ $(document).ready(function(){
 			<ul class="style1">
 			
 			<c:forEach items="${friendList }" var="friendVO">
-				<li style="cursor: pointer;" class="eachList" id="${friendVO.id }" data-toggle="modal" data-target="#myPopUp" onclick="friendClick('${friendVO.id}')" >
+				<li style="cursor: pointer;" id="eachList" id="${friendVO.id }" data-toggle="modal" data-target="#myPopUp" onclick="friendClick('${friendVO.id}')" >
 					<p class="date"><img src="resources/images/${friendVO.thumbnailPath }" alt="" style="width: 100%; height:110%;" /></p>
 					<h3>&nbsp;${friendVO.id }</h3>
 					<p>${friendVO.stateMessage } &nbsp;</p>
@@ -236,23 +249,23 @@ $(document).ready(function(){
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header" style="width: 100%;">
-
-		모달 헤더
 		<input type="hidden" id = "hiddenId"></input>
 		<input type="hidden" id = "hiddenNum"></input>
+		<h1><div id="partner"></div></h1><h3>님과의 채팅</h3>	   
+		
 	      </div>
 
-		<h1><div id="partner"></div></h1><h3>님과의 채팅</h3>	      </div>
+		
 
 	      <div class="modal-body" style="height: 800px;">
-	           <div class="chatContent" style="height: 700px; border: 1px;"  >
-	     		## 채팅 내용 영역 ## 
+	           <div class="chatContent" id = "chatList" style="height: 700px; border: 1px;"  >
+	     		## 채팅 내용 영역 ## 	
 	     </div> 
 		
 	
 	     <div class="inputText" >
-	     <input type="text" placeholder="채팅을 입력하세요" style="width: 500px;"></input>
-	     <button>전송</button>
+	     <input type="text" placeholder="채팅을 입력하세요" id="chatSend" style="width: 500px;"></input>
+	     <button id="chatSendBtn">전송</button>
 	     </div>
 	      </div>
 	    </div>

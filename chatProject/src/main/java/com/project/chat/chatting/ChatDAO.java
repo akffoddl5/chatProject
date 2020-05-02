@@ -33,5 +33,9 @@ public class ChatDAO {
 		
 	}
 	
+	void insertChat(ChatContentDTO chatContentDTO) {
+		sqlSessionTemplate.insert("insertChat",chatContentDTO);
+	}
+	
 	
 }

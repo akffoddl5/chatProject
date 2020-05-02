@@ -42,10 +42,10 @@ public class WebSocket extends TextWebSocketHandler implements InitializingBean 
         super.afterConnectionEstablished(session);
         System.out.println("=========연결 세션 정보 ==========");
         
-        System.out.println(session.getId());
-        System.out.println(session.getHandshakeHeaders());
-        System.out.println(session.getUri());
-        System.out.println(session.toString());
+//        System.out.println(session.getId());
+//        System.out.println(session.getHandshakeHeaders());
+//        System.out.println(session.getUri());
+//        System.out.println(session.toString());
         Map<String,Object> mp = session.getAttributes();
         
         List<String> list = new ArrayList<>();
@@ -53,9 +53,28 @@ public class WebSocket extends TextWebSocketHandler implements InitializingBean 
     	list.add(userVO.getId());
     	list.add("user");
     	list.add(session.getId());
+    	System.out.println("방 들어가야 하는 목록 띄워지냐??" + userVO.getChatRooms());
+    	if(userVO.getChatRooms()!=null) {
+    		
+    		String[] chatRooms = userVO.getChatRooms().split(":");
+    		System.out.println(Arrays.toString(chatRooms));
+    		for(String s : chatRooms) {
+    			if(!s.equals("")) {
+    				if(roomList.containsKey(Integer.parseInt(s))) {
+        				System.out.println("방 이미 있음");
+        				roomList.get(Integer.parseInt(s)).add(session);
+        			}else {
+        				System.out.println("방 없어서 만듬");
+        				Set<WebSocketSession> st = new HashSet<>();
+        				st.add(session);
+        				roomList.put(Integer.parseInt(s),st );
+        			}
+    			}
+    			
+    		}
+    	}
     	
-    	
-        
+        System.out.println("현재 활성 채팅방 :" + roomList.size());
         System.out.println("=============================");
         sessionInfoList.put(session, list);
         sessionSet.add(session);
@@ -69,15 +88,12 @@ public class WebSocket extends TextWebSocketHandler implements InitializingBean 
         String message_s = message.getPayload().toString();
         String[] messages = message_s.split("!ChatKey!");
         System.out.println(Arrays.toString(messages));
-        String roomNum;
-        String myId = "";
+        String roomNum = messages[0];
+        String content = messages[1];
+        String myId = messages[2];
+        String myThumbnail = messages[3];
         
-        message_s = messages[2];
-        roomNum=messages[0];
-        myId=messages[1];
-        
-       
-        sendMessage(message_s, roomNum,session,myId);
+        sendMessage(content, roomNum,session,myId,myThumbnail);
     }
 //에러
     @Override
@@ -92,7 +108,7 @@ public class WebSocket extends TextWebSocketHandler implements InitializingBean 
         return super.supportsPartialMessages();
     }
 // 함수를 따로 정의하였다 메세지를 보내는 함수이다 웹소켓에 저장한 사용자들에게 모두다 보낸다
-    public void sendMessage (String message , String roomNum, WebSocketSession session, String myId){
+    public void sendMessage (String message , String roomNum, WebSocketSession session, String myId,String myThumbnail){
     	System.out.println("send : " + message);
     	String json = "{\"type\":\"chat\",\"chat\":\""+message+"\",\"name\":\" " + myId + "\" ,\"date\":\""+new Date()+"\"}" ;
     	System.out.println("send2 : " + json );
@@ -108,13 +124,7 @@ public class WebSocket extends TextWebSocketHandler implements InitializingBean 
                   }
               }
     		}
-    		if (session.isOpen()){
-                try{
-                    session.sendMessage(new TextMessage(json));
-                }catch (Exception ignored){
-//                    this.logger.error("fail to send message!", ignored);
-                }
-    		}
+    	
     	
     	
 //        for (WebSocketSession session2: this.sessionSet){

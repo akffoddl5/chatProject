@@ -15,5 +15,9 @@
 	<select id="getSoloChatRoomNum" resultType="String" parameterType="String">
 select num from chatroom where participants =  #{case1} or participants = #{case2}
 	</select>
+	
+	<insert id="insertChat">
+	insert into chatcontent (num,roomnum,id,content, thumnailPath) values (chatcontent_seq.nextVal,#{roomNum},#{id},#{content},#{thumnailPath})
+	</insert>
 
 </mapper>

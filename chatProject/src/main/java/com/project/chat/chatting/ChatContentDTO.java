@@ -8,7 +8,7 @@ public class ChatContentDTO {
 	int roomNum;
 	String id;
 	String content;
-	String thumbnailPath;
+	String thumnailPath;
 	Date regDate;
 	public int getNum() {
 		return num;
@@ -34,11 +34,12 @@ public class ChatContentDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getThumbnailPath() {
-		return thumbnailPath;
+	
+	public String getThumnailPath() {
+		return thumnailPath;
 	}
-	public void setThumbnailPath(String thumbnailPath) {
-		this.thumbnailPath = thumbnailPath;
+	public void setThumnailPath(String thumnailPath) {
+		this.thumnailPath = thumnailPath;
 	}
 	public Date getRegDate() {
 		return regDate;
