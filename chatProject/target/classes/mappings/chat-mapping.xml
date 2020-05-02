@@ -11,5 +11,9 @@
 		</foreach>
 		order by recentdate
 	</select>
+	
+	<select id="getSoloChatRoomNum" resultType="String" parameterType="String">
+select num from chatroom where participants =  #{case1} or participants = #{case2}
+	</select>
 
 </mapper>

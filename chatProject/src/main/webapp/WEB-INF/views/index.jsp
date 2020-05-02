@@ -32,10 +32,20 @@ Released   : 20130902
 <script>
 
 function friendClick(id){
-	<%--alert(id);
-	$('#partner').value = id;
-	alert("DDDD" + document.getElementById("partner").value);--%>
+
 	document.getElementById("partner").textContent= id;
+	alert("soloChat 상대 : "+id);
+	var myId = '${vo.id}';
+	var query = {"myId" : myId , "partnerId" : id};
+	$.ajax({
+		url : "soloChatStart.do",
+		type : 'POST',
+		data : query,
+		success : function(data) {
+			alert("방 번호 부여 받음 :" + data);
+			// 웹소켓 열기 여기서.
+		}
+	});
 	
 }
 
@@ -54,7 +64,6 @@ function friendBlock(id){
 
 }
 </script>
- 
 
 
 </head>

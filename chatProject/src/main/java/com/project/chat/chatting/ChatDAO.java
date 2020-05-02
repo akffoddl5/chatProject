@@ -24,5 +24,15 @@ public class ChatDAO {
 		
 	}
 	
+	int getSoloChatRoomNum(String case1 , String case2) {
+		Map<String, String> mp = new HashMap<>();
+		mp.put("case1", case1);
+		mp.put("case2", case2);
+		String num_s = sqlSessionTemplate.selectOne("getSoloChatRoomNum",mp); // list 나올수 있지만 배제
+		if(num_s != null) return Integer.parseInt(num_s);
+		else return -1;
+		
+	}
+	
 	
 }
