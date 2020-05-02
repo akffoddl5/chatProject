@@ -73,8 +73,8 @@ function friendBlock(id){
 <script>
 $(document).ready(function(){
 	   
-	   var wsUri = "ws://172.30.1.46:8080/chat/echo.do";
-
+	   //var wsUri = "ws://172.30.1.46:8080/chat/echo.do";
+	   var wsUri = "ws://localhost:8080/chat/echo.do";
 	    websocket = new WebSocket(wsUri);
 	//딱봐도 알거라고 믿겟음 함수명이 모든걸 말아주고있져?
 	    websocket.onopen = function(evt) {
