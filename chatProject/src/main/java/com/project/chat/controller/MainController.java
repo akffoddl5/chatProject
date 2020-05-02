@@ -1,5 +1,6 @@
 package com.project.chat.controller;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -16,11 +17,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.project.chat.chatting.ChatRoomDTO;
 import com.project.chat.chatting.IChatService;
 import com.project.chat.friend.IFriendService;
+import com.project.chat.user.IUserService;
+import com.project.chat.user.UserServiceImpl;
 import com.project.chat.user.UserVO;
 
 @Controller
 public class MainController {
 	
+	@Autowired
+	private IUserService userService;
 	@Autowired
 	private IFriendService friendService;
 	@Autowired
@@ -96,11 +101,20 @@ public class MainController {
 	}
 		hs.remove(userVO.getId());
 		List<UserVO> friends = friendService.getAllMyFriends(userVO);
+		List<UserVO> reFriends = new ArrayList<>();
 		System.out.println(friends);
 		for(UserVO friendId :friends) {
 			hs.remove(friendId.getId());
 		}
-		System.out.println(hs);
+		System.out.println("추천 친구 닉네임 : " + hs);
+		for(String ms:hs) {
+			System.out.println("AA" + ms);
+			UserVO reFriend = userService.getUser(ms);
+			System.out.println(reFriend);
+			reFriends.add(reFriend);
+		}
+		System.out.println("추천친구 VO" + reFriends);
+		mav.addObject("reFriendsList",reFriends);
 		mav.setViewName("/makeNewFriends");
 		return mav;
 	}
@@ -108,6 +122,15 @@ public class MainController {
 	@RequestMapping(value = "modalPrac.go")
 	ModelAndView goModalPrac(ModelAndView mav) {
 		mav.setViewName("/modalPrac");
+		return mav;
+	}
+	
+	@RequestMapping(value = "addReFriend.do")
+	ModelAndView addReFriend(@RequestParam("friendId") String friend_id , ModelAndView mav , HttpSession session) {
+		System.out.println(friend_id);
+		UserVO userVO = (UserVO) session.getAttribute("vo");
+		friendService.addFriend(userVO.getId(), friend_id);
+		mav.setViewName("redirect:/index.go");
 		return mav;
 	}
 	

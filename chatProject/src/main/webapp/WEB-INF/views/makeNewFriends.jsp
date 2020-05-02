@@ -45,9 +45,15 @@ $(document).ready(function(){
 		
 	});
 	
-	
-});
 
+});
+	
+	function addReFriend(id){
+		alert(id + " 친구 추가 완료");
+		location.href="/chat/addReFriend.do?friendId="+id
+	}
+	
+	
 </script>
 </head>
 <body>
@@ -83,23 +89,23 @@ $(document).ready(function(){
 		
 		<div id="featured">
 			<div class="title">
-				<h2>Ban List</h2>
-				<span class="byline">나의 차단 친구 관리</span>
+				<h2>Recommand Friends</h2>
+				<span class="byline">추천 친구 목록</span>
 			</div>
 			<ul class="style1">
 			
-			<c:forEach items="${bannedFriendList }" var="friendVO">
+			<c:forEach items="${reFriendsList }" var="reFriendVO">
 				<li>
 				
 				<table style="width: 95%;">
 				<tr>
 				<td style="width: 90%;">
-				<p class="date"><img src="resources/images/${friendVO.thumbnailPath }" alt="" style="width: 100%; height:110%;" /></p>
-					<h3>&nbsp;&nbsp;<b>${friendVO.id }</b></h3>
-					<p>${friendVO.stateMessage } &nbsp;</p>
+				<p class="date"><img src="resources/images/${reFriendVO.thumbnailPath }" alt="" style="width: 100%; height:110%;" /></p>
+					<h3>&nbsp;&nbsp;<b>${reFriendVO.id }</b></h3>
+					<p>${reFriendVO.stateMessage } &nbsp;</p>
 				</td>
-				<td><img src="resources/images/iconX2.png" alt="" style="width: 70%; height: 30px; cursor: pointer;" onclick="banCancle('${friendVO.id}')"/> </td>
-				</tr>
+				<td><img src="resources/images/icon+.jpeg" alt="" style="width: 70%; height: 30px; cursor: pointer;" onclick="addReFriend('${reFriendVO.id }')"/> </td>
+				</tr>	
 				</table>
 				
 					
