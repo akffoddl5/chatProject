@@ -49,6 +49,13 @@ public class UserServiceImpl implements IUserService {
 		return 0;
 	}
 
+	@Override
+	public String test() {
+		return userDAO.test();
+	}
+
+	
+
 
 
 	

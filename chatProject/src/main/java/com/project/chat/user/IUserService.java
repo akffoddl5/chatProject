@@ -10,4 +10,6 @@ public interface IUserService {
 	void banCancle(String myId , String banId);
 	int userIdCheck(String user_id); //ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½ Ã¼Å©
 	
+	String test(); //¿¬°á test
+	
 }

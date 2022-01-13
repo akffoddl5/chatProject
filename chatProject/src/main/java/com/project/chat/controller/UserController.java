@@ -28,6 +28,14 @@ public class UserController {
 	@Autowired
 	private IFriendService friendService;
 	
+	@RequestMapping(value="/test.go")
+	public ModelAndView loginTest(ModelAndView mav){
+		System.out.println("login.Test");
+		System.out.println("test result : " + userService.test());
+		mav.setViewName("/login");
+		return mav;
+	}
+	
 	@RequestMapping(value="/login.go")
 	public ModelAndView loginGo(ModelAndView mav){
 		System.out.println("login.go");

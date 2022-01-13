@@ -50,7 +50,9 @@ public class UserDAO {
 		 sqlSessionTemplate.update("userBatis.updateUser",userVO);
 	}
 
-
+	public String test() {
+		return sqlSessionTemplate.selectOne("userBatis.test");
+	}
 	
 
 	

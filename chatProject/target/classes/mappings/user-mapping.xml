@@ -8,6 +8,10 @@
 	SELECT * FROM CHATUSER WHERE Id = #{id} 
 </select>
 
+<select id="test" resultType="String">
+	select val from test where idx = 1
+</select>
+
 <insert id="insertUser" parameterType="userVO">
 	INSERT INTO CHATUSER (id,password) VALUES (#{id},#{password})
 </insert>
