@@ -31,6 +31,13 @@ public class MainController {
 	@Autowired
 	private IChatService chatService;
 	
+	@RequestMapping(value="/")
+	ModelAndView defaultIndex(ModelAndView mav) {
+		System.out.println("defaultIndex");
+		mav.setViewName("/myProfile");
+		return mav;
+	}
+	
 	@RequestMapping(value="/myProfile.go")
 	ModelAndView goMyProfile(ModelAndView mav) {
 		System.out.println("go myProfile");

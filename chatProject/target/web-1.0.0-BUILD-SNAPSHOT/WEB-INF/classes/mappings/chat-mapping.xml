@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="chatBatis">
+
+	<select id="getMyChatRooms" resultType="chatRoomDTO" parameterType="chatRoomDTO">
+		select * from chatRoom where 
+		<foreach collection="chatRoomNumList" index="index" item="item" separator="or" >
+		num = #{item} 
+		</foreach>
+		order by recentdate
+	</select>
+	
+	<select id="getSoloChatRoomNum" resultType="String" parameterType="String">
+select num from chatroom where participants =  #{case1} or participants = #{case2}
+	</select>
+	
+	<insert id="insertChat">
+	insert into chatcontent (num,roomnum,id,content, thumnailPath) values (chatcontent_seq.nextVal,#{roomNum},#{id},#{content},#{thumnailPath})
+	</insert>
+
+</mapper>

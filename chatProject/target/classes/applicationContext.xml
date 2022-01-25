@@ -18,8 +18,8 @@
 
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close"  
 	p:driverClassName="oracle.jdbc.OracleDriver" 
-	p:url="jdbc:oracle:thin:@(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=adb.ap-chuncheon-1.oraclecloud.com))(connect_data=(service_name=g6108295be99337_db202201120058_high.adb.oraclecloud.com))(security=(ssl_server_cert_dn='CN=adb.ap-chuncheon-1.oraclecloud.com, OU=Oracle ADB CHUNCHEON, O=Oracle Corporation, L=Redwood City, ST=California, C=US')))"
-	p:username="admin" 
+	p:url="jdbc:oracle:thin:@db202201120058_high?TNS_ADMIN=C:\\myWork\\Wallet_DB202201120058"
+	p:username="ADMIN" 
 	p:password="TMPsnowball2!">
 	</bean>
 	

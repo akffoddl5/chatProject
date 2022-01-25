@@ -2,6 +2,8 @@ package com.project.chat.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -29,9 +31,33 @@ public class UserController {
 	private IFriendService friendService;
 	
 	@RequestMapping(value="/test.go")
-	public ModelAndView loginTest(ModelAndView mav){
+	public ModelAndView loginTest(ModelAndView mav) throws ClassNotFoundException{
 		System.out.println("login.Test");
-		System.out.println("test result : " + userService.test());
+		
+		String tmp = userService.test();
+		System.out.println("get : " + tmp);
+		
+		/*
+		String DRIVER = "oracle.jdbc.OracleDriver";
+	    String URL = "jdbc:oracle:thin:@db202201120058_high?TNS_ADMIN=C:\\myWork\\Wallet_DB202201120058";
+	    String USER = "ADMIN";
+	    String PW = "TMPsnowball2!";
+	    
+	    String DB_URL="jdbc:oracle:thin:@db202201120058_high?TNS_ADMIN=/myWork/Wallet_DB202201120058";
+	    
+	    
+	    Class.forName(DRIVER);
+	    
+        try(Connection con = DriverManager.getConnection(URL, USER, PW)){
+        	System.out.println("copnnect 성공");
+            System.out.println(con);
+            
+        }catch(Exception e){
+        	System.out.println("connect 실패");
+            e.printStackTrace();
+        }
+        
+		*/
 		mav.setViewName("/login");
 		return mav;
 	}
