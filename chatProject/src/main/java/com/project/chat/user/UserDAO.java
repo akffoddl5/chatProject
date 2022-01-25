@@ -18,15 +18,16 @@ create table friends(
  * 
  * 
  */
+import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@RequiredArgsConstructor
 public class UserDAO {
 
-	@Autowired
-	private SqlSessionTemplate sqlSessionTemplate;
+	private final SqlSessionTemplate sqlSessionTemplate;
 	
 	public UserVO selectUser(UserVO userVO) {
 		return sqlSessionTemplate.selectOne("userBatis.getUser",userVO);

@@ -10,6 +10,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,13 +23,11 @@ import com.project.chat.user.IUserService;
 import com.project.chat.user.UserVO;
 
 @Controller
+@RequiredArgsConstructor
 public class UserController {
 	
-	@Autowired
-	private IUserService userService;
-	
-	@Autowired
-	private IFriendService friendService;
+	private final IUserService userService;
+	private final IFriendService friendService;
 	
 	@RequestMapping(value="/test.go")
 	public ModelAndView loginTest(ModelAndView mav) throws ClassNotFoundException{

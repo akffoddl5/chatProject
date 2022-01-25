@@ -1,29 +1,26 @@
 package com.project.chat.controller;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.project.chat.chatting.ChatRoomDTO;
+import com.project.chat.chatting.IChatService;
+import com.project.chat.friend.IFriendService;
+import com.project.chat.user.IUserService;
+import com.project.chat.user.UserVO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.project.chat.chatting.ChatRoomDTO;
-import com.project.chat.chatting.IChatService;
-import com.project.chat.friend.IFriendService;
-import com.project.chat.user.IUserService;
-import com.project.chat.user.UserServiceImpl;
-import com.project.chat.user.UserVO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class MainController {
-	
+
 	@Autowired
 	private IUserService userService;
 	@Autowired
@@ -151,5 +148,4 @@ public class MainController {
 	}
 	
 	
-	
-}
+
