@@ -2,6 +2,7 @@ package com.project.chat.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -12,10 +13,10 @@ import com.project.chat.chatting.ChatContentDTO;
 import com.project.chat.chatting.IChatService;
 
 @Controller
+@RequiredArgsConstructor
 public class ChatController {
 	
-	@Autowired
-	IChatService chatService;
+	final IChatService chatService;
 	
 	@RequestMapping(value="/soloChatStart.do")
 	ModelAndView soloChatServiceStart(ModelAndView mav , HttpServletRequest request) {

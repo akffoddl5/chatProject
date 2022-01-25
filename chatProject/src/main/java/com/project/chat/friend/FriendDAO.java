@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,10 +12,10 @@ import org.springframework.stereotype.Repository;
 import com.project.chat.user.UserVO;
 
 @Repository
+@RequiredArgsConstructor
 public class FriendDAO {
 	
-	@Autowired
-	private SqlSessionTemplate sqlSessionTemplate;
+	private final SqlSessionTemplate sqlSessionTemplate;
 	
 	List<UserVO> getMyFriends(UserVO userVO){
 		return sqlSessionTemplate.selectList("friendBatis.getMyFriends",userVO);

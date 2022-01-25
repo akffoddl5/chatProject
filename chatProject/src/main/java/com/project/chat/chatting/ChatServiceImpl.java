@@ -2,16 +2,17 @@ package com.project.chat.chatting;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.chat.user.UserVO;
 
 @Service
+@RequiredArgsConstructor
 public class ChatServiceImpl implements IChatService {
 	
-	@Autowired
-	private ChatDAO chatDAO;
+	private final ChatDAO chatDAO;
 	
 	public List<ChatRoomDTO> getMyChatRooms(UserVO userVO){
 		return chatDAO.getMyChatRooms(userVO);
