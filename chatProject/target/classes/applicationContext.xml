@@ -17,17 +17,10 @@
 	<util:properties id="dataSourceConfig" location="classpath:db.properties"/>
 
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close"  
-<<<<<<< HEAD
-	p:driverClassName="oracle.jdbc.OracleDriver" 
-	p:url="jdbc:oracle:thin:@db202201120058_high?TNS_ADMIN=./src/main/resources/Wallet_DB202201120058"
-	p:username="ADMIN" 
-	p:password="TMPsnowball2!">
-=======
 	p:driverClassName="#{dataSourceConfig.jdbc.driverClassName}"
 	p:url="#{dataSourceConfig.jdbc.url}"
 	p:username="#{dataSourceConfig.jdbc.username}"
 	p:password="#{dataSourceConfig.jdbc.password}">
->>>>>>> 3f2f97347abc7b9d0ddaefb64aeaffb96d1acee1
 	</bean>
 	
 	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
